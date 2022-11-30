@@ -1,0 +1,38 @@
+vi nginx-service.yaml
+apiVersion: v1
+Kind: Service
+metadata:
+  name: nginx-service
+  
+spec:
+  ports:
+  - port: 8080
+    targetPort: 80
+  selector:
+    app: demoapp
+  type: NodePort
+  
+  # kubectl create -f nginx-service.yaml
+  
+  
+Create the Deployment by running the following command:
+
+# kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+
+Display information about the Deployment:
+
+# kubectl get deployments nginx-deployment
+
+# kubectl describe deployments nginx-deployment
+
+Create a Service object that exposes the deployment:
+
+# kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service
+
+Display information about the Service:
+
+# kubectl get services my-service
+
+Display detailed information about the Service:
+
+kubectl describe services my-service
