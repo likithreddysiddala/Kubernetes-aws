@@ -43,6 +43,18 @@ Display information about the Service:
 
 Display detailed information about the Service:
 
-kubectl describe services my-service
+# kubectl describe services my-service
 
 #### Browse external IP with port number #####
+
+Get namespaces 
+
+# kubectl get svc --all-namespaces
+
+delete namespace
+
+# kubectl delete svc service-name
+
+delete cluster name
+
+# eksctl delete cluster --name clustername
