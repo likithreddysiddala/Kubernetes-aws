@@ -37,3 +37,8 @@ DELETE AWS CLUSTER USING COMMAND LINE:
 # kubectl delete svc service-name
 # eksctl delete cluster --name clustername
 
+
+Upadte Nodes in AWS CLI:
+
+# aws eks update-nodegroup-config --cluster-name clustername --nodegroup-name nodegroup --scaling-config minSize=3,maxSize=3,desiredSize=3
+
