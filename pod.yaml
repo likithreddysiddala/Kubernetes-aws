@@ -1,0 +1,16 @@
+vi nginix-pod.yaml
+apiVersion: v1
+Kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: demoapp
+
+spec:
+  containers:
+  - image: nginx
+    name: nginx-demoapp
+	ports:
+	- containerPort: 80
+  
+  ## kubectl create -f nginx-pod.yaml
