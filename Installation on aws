@@ -31,55 +31,6 @@ To update a kubeconfig for your cluster:
 
 
 
-Create deployment yaml file:
-
-# vi nginx-deployment.yaml
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-Create the Deployment by running the following command:
-
-# kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
-
-Display information about the Deployment:
-
-# kubectl get deployments nginx-deployment
-
-# kubectl describe deployments nginx-deployment
-
-Create a Service object that exposes the deployment:
-
-# kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service
-
-Display information about the Service:
-
-# kubectl get services my-service
-
-Display detailed information about the Service:
-
-kubectl describe services my-service
-
-#### Browse external IP with port number #####
-
 DELETE AWS CLUSTER USING COMMAND LINE:
 
 # kubectl get svc --all-namespaces
