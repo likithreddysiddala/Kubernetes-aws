@@ -1,0 +1,75 @@
+Create Ec2 instance in t3.medium 
+Run commands in ec2-user or other user (dont run root user)
+Create IAM role full admin access or (IAM,Cloudformation,Ec2,S3,--)
+Kubectl installation:
+# curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.22.15/2022-10-31/bin/linux/amd64/kubectl
+# openssl sha1 -sha256 kubectl
+# chmod +x ./kubectl
+# mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+# echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+# kubectl version --short --client
+
+eksctl Installation:
+# curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+# sudo mv /tmp/eksctl /usr/local/bin
+# eksctl version
+
+eksctl create cluster --name clustername \
+--region ap-southeast-2 \
+--node-type t3.medium 
+
+Create deployment yaml file:
+
+# vi nginx-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+Create the Deployment by running the following command:
+
+# kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+
+Display information about the Deployment:
+
+# kubectl get deployments nginx-deployment
+
+# kubectl describe deployments nginx-deployment
+
+Create a Service object that exposes the deployment:
+
+# kubectl expose deployment nginx-deployment --type=LoadBalancer --name=my-service
+
+Display information about the Service:
+
+# kubectl get services my-service
+
+Display detailed information about the Service:
+
+kubectl describe services my-service
+
+#### Browse external IP with port number #####
+
+DELETE AWS CLUSTER USING COMMAND LINE:
+
+# kubectl get svc --all-namespaces
+# kubectl delete svc service-name
+# eksctl delete cluster --name clustername
+
