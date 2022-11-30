@@ -14,9 +14,22 @@ eksctl Installation:
 # sudo mv /tmp/eksctl /usr/local/bin
 # eksctl version
 
+Configure Aws Cli
+# aws configure
+  secret key
+  accesskey
+  region
+CLUSTER CREATE COMMAND ON LINUX SERVER:
+
 eksctl create cluster --name clustername \
 --region ap-southeast-2 \
 --node-type t3.medium 
+
+To update a kubeconfig for your cluster:
+
+# aws eks update-kubeconfig --name clustername
+
+
 
 Create deployment yaml file:
 
