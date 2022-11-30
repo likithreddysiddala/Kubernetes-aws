@@ -13,4 +13,5 @@ spec:
 	ports:
 	- containerPort: 80
   
-  ## kubectl create -f nginx-pod.yaml
+ # kubectl create -f nginx-pod.yaml (create)
+# kubectl apply -f nginx-pod.yaml  (update)
